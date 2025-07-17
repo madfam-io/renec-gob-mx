@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos base y variables de color */
+        /* Base styles and color variables */
         :root {
             --bg-light: #f5f5f4; /* Stone 100 */
             --text-light: #1c1917; /* Stone 900 */
@@ -43,7 +43,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Estilos Neobrutalistas */
+        /* Neobrutalist Styles */
         .neo-card {
             background-color: var(--bg-color);
             border: 3px solid var(--border-color);
@@ -62,9 +62,17 @@
             box-shadow: 4px 4px 0px var(--border-color);
             transition: all 0.2s ease-in-out !important;
             font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .neo-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 4px 4px 0px var(--border-color);
         }
 
-        .neo-button:hover, .neo-button.active {
+        .neo-button:hover:not(:disabled), .neo-button.active {
             background-color: var(--accent-color);
             color: var(--bg-color);
             transform: translate(2px, 2px);
@@ -86,6 +94,33 @@
             border-color: var(--accent-color);
             box-shadow: 0 0 0 3px var(--accent-color);
         }
+
+        /* View mode styles */
+        .view-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .view-list .neo-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+         .view-list .list-content {
+            flex-grow: 1;
+        }
+        .view-list .list-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            min-width: 200px;
+            margin-left: 1rem;
+        }
+
 
         /* Scrollbar styles */
         ::-webkit-scrollbar {
@@ -127,13 +162,13 @@
                 <!-- Theme Switcher -->
                 <div id="theme-switcher" class="flex border-2 border-[var(--border-color)] rounded-lg">
                      <button data-theme="light" class="neo-button !border-0 !shadow-none p-2 rounded-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="pointer-events-none"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/></svg>
                     </button>
                     <button data-theme="dark" class="neo-button !border-0 !shadow-none p-2 rounded-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="pointer-events-none"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
                     </button>
                     <button data-theme="auto" class="neo-button !border-0 !shadow-none p-2 rounded-md active">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a1 1 0 0 1 1 1v12a1 1 0 0 1-2 0V2a1 1 0 0 1 1-1zM3.5 2a1 1 0 0 0-1 1v10a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zM12.5 2a1 1 0 0 0-1 1v10a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="pointer-events-none"><path d="M8 1a1 1 0 0 1 1 1v12a1 1 0 0 1-2 0V2a1 1 0 0 1 1-1zM3.5 2a1 1 0 0 0-1 1v10a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zM12.5 2a1 1 0 0 0-1 1v10a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1z"/></svg>
                     </button>
                 </div>
             </div>
@@ -144,86 +179,54 @@
     <main class="container mx-auto p-4 md:p-6">
         
         <!-- Search and View Controls -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 items-end">
             <div class="md:col-span-2">
-                <label for="search-input" class="font-bold mb-2 block" data-lang-key="search_label">Buscar por Código, Título, Comité o Sector</label>
-                <input type="text" id="search-input" class="neo-input w-full p-3 text-lg rounded-lg" placeholder="Ej: EC0305, soldadura, construcción...">
+                <label for="search-input" class="font-bold mb-2 block" data-lang-key="search_label">Buscar</label>
+                <input type="text" id="search-input" class="neo-input w-full p-3 text-lg rounded-lg" placeholder="EC0305, soldadura, etc...">
             </div>
             <div>
                 <label class="font-bold mb-2 block" data-lang-key="view_mode_label">Modo de Vista</label>
                 <div id="view-mode-switcher" class="flex border-2 border-[var(--border-color)] rounded-lg">
-                    <button data-view="grid" class="neo-button !border-0 !shadow-none px-3 py-2 text-sm rounded-md active">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3A1.5 1.5 0 0 1 15 10.5v3A1.5 1.5 0 0 1 13.5 15h-3A1.5 1.5 0 0 1 9 13.5v-3z"/></svg>
+                    <button data-view="grid" class="neo-button !border-0 !shadow-none px-3 py-2 text-sm rounded-md active flex-1 justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="pointer-events-none"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3A1.5 1.5 0 0 1 15 10.5v3A1.5 1.5 0 0 1 13.5 15h-3A1.5 1.5 0 0 1 9 13.5v-3z"/></svg>
                     </button>
-                    <button data-view="list" class="neo-button !border-0 !shadow-none px-3 py-2 text-sm rounded-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
+                    <button data-view="list" class="neo-button !border-0 !shadow-none px-3 py-2 text-sm rounded-md flex-1 justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="pointer-events-none"><path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
                     </button>
                 </div>
             </div>
             <div>
-                <button id="filter-toggle" class="filter-toggle px-4 py-2 rounded-lg font-bold mb-2 w-full">
-                    <span data-lang-key="filters_button">Filtros Avanzados</span>
-                    <span id="filter-count" class="hidden ml-2 bg-[var(--bg-color)] text-[var(--accent-color)] px-2 py-1 rounded-full text-xs">0</span>
+                 <button id="filter-toggle" class="neo-button px-4 py-3 rounded-lg w-full flex items-center justify-center">
+                    <span data-lang-key="filters_button">Filtros</span>
+                    <span id="filter-count" class="hidden ml-2 bg-[var(--accent-color)] text-[var(--bg-color)] px-2 py-1 rounded-full text-xs font-mono">0</span>
                 </button>
             </div>
         </div>
 
         <!-- Advanced Filters Panel -->
-        <div id="filter-panel" class="filter-panel rounded-lg p-6 mb-6 hidden">
+        <div id="filter-panel" class="neo-card p-6 mb-6 hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Level Filter -->
                 <div>
                     <label for="level-filter" class="font-bold mb-2 block" data-lang-key="level_label">Nivel</label>
-                    <select id="level-filter" class="neo-input w-full p-3 rounded-lg appearance-none">
-                        <option value="all" data-lang-key="all_levels">Todos los niveles</option>
-                    </select>
+                    <select id="level-filter" class="neo-input w-full p-3 rounded-lg appearance-none"></select>
                 </div>
 
-                <!-- Committee Filter -->
                 <div>
                     <label for="committee-filter" class="font-bold mb-2 block" data-lang-key="committee_label">Comité</label>
-                    <select id="committee-filter" class="neo-input w-full p-3 rounded-lg appearance-none">
-                        <option value="all" data-lang-key="all_committees">Todos los comités</option>
-                    </select>
+                    <select id="committee-filter" class="neo-input w-full p-3 rounded-lg appearance-none"></select>
                 </div>
 
-                <!-- Sector Filter -->
                 <div>
                     <label for="sector-filter" class="font-bold mb-2 block" data-lang-key="sector_label">Sector Productivo</label>
-                    <select id="sector-filter" class="neo-input w-full p-3 rounded-lg appearance-none">
-                        <option value="all" data-lang-key="all_sectors">Todos los sectores</option>
-                    </select>
+                    <select id="sector-filter" class="neo-input w-full p-3 rounded-lg appearance-none"></select>
                 </div>
 
-                <!-- Code Range Filter -->
-                <div>
-                    <label for="code-range-filter" class="font-bold mb-2 block" data-lang-key="code_range_label">Rango de Código</label>
-                    <select id="code-range-filter" class="neo-input w-full p-3 rounded-lg appearance-none">
-                        <option value="all" data-lang-key="all_codes">Todos los códigos</option>
-                    </select>
-                </div>
-
-                <!-- Quick Category Filter -->
-                <div>
-                    <label for="category-filter" class="font-bold mb-2 block" data-lang-key="category_label">Categoría Rápida</label>
-                    <select id="category-filter" class="neo-input w-full p-3 rounded-lg appearance-none">
-                        <option value="all" data-lang-key="all_categories">Todas las categorías</option>
-                    </select>
-                </div>
-
-                <!-- Clear Filters Button -->
                 <div class="flex items-end">
                     <button id="clear-filters" class="neo-button px-4 py-3 rounded-lg font-bold w-full">
                         <span data-lang-key="clear_filters">Limpiar Filtros</span>
                     </button>
                 </div>
-            </div>
-
-            <!-- Active Filters Display -->
-            <div id="active-filters" class="mt-6 hidden">
-                <h3 class="font-bold mb-3" data-lang-key="active_filters">Filtros Activos:</h3>
-                <div id="active-filters-container" class="flex flex-wrap gap-2"></div>
             </div>
         </div>
 
@@ -231,9 +234,12 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <div id="results-count" class="text-lg font-bold"></div>
             <div class="flex gap-2">
-                <button id="sort-button" class="neo-button px-4 py-2 rounded-lg text-sm">
-                    <span data-lang-key="sort_button">Ordenar por Código</span>
-                </button>
+                <select id="sort-select" class="neo-input px-4 py-2 rounded-lg text-sm">
+                   <option value="code_asc" data-lang-key="sort_code_asc">Código (A-Z)</option>
+                   <option value="code_desc" data-lang-key="sort_code_desc">Código (Z-A)</option>
+                   <option value="level_asc" data-lang-key="sort_level_asc">Nivel (Bajo-Alto)</option>
+                   <option value="level_desc" data-lang-key="sort_level_desc">Nivel (Alto-Bajo)</option>
+                </select>
                 <button id="random-button" class="neo-button px-4 py-2 rounded-lg text-sm">
                     <span data-lang-key="random_button">Aleatorio</span>
                 </button>
@@ -245,28 +251,24 @@
             <div class="loader"></div>
         </div>
         
-        <div id="standards-container" class="view-grid">
+        <div id="standards-container" class="view-grid hidden">
             <!-- Standard cards will be injected here -->
         </div>
         
         <!-- No Results Message -->
         <div id="no-results" class="hidden text-center py-16">
-            <h2 class="text-3xl font-bold mb-4" data-lang-key="no_results_title">No se encontraron resultados</h2>
-            <p class="text-xl mb-4" data-lang-key="no_results_text">Intenta ajustar tus filtros o términos de búsqueda.</p>
-            <button id="show-all-button" class="neo-button px-6 py-3 rounded-lg font-bold">
-                <span data-lang-key="show_all">Mostrar Todos</span>
-            </button>
+            <div class="neo-card max-w-md mx-auto p-8">
+                <h2 class="text-3xl font-bold mb-4" data-lang-key="no_results_title">No se encontraron resultados</h2>
+                <p class="text-xl mb-6" data-lang-key="no_results_text">Intenta ajustar tus filtros o términos de búsqueda.</p>
+                <button id="show-all-button" class="neo-button px-6 py-3 rounded-lg font-bold">
+                    <span data-lang-key="show_all">Mostrar Todos</span>
+                </button>
+            </div>
         </div>
 
         <!-- Pagination -->
         <div id="pagination" class="hidden mt-8 flex justify-center items-center gap-2">
-            <button id="prev-page" class="neo-button px-4 py-2 rounded-lg">
-                <span data-lang-key="prev_page">Anterior</span>
-            </button>
-            <div id="page-info" class="px-4 py-2 font-bold"></div>
-            <button id="next-page" class="neo-button px-4 py-2 rounded-lg">
-                <span data-lang-key="next_page">Siguiente</span>
-            </button>
+            <!-- Pagination buttons will be injected here -->
         </div>
 
     </main>
@@ -277,7 +279,8 @@
 
     <script>
         // --- DATA ---
-        // The CSV data is embedded here as a JSON array for performance.
+        // The CSV data is embedded here as a JSON array.
+        // NOTE: In a real-world application, this would be fetched from an API.
         const standardsData = [
               {
                 "Codigo": "EC0001",
@@ -4288,6 +4291,7 @@
             // In the full implementation, all records are present.
             {"Codigo":"EC1685","Nivel":"2","Titulo":"Conducción del entrenamiento de básquetbol nivel básico","Comite":"de Profesionales del Entrenamiento Deportivo","Sector Productivo":"SERVICIOS DE ESPARCIMIENTO CULTURALES Y DEPORTIVOS, Y OTROS SERVICIOS RECREATIVOS"}
         ];
+        // In a full implementation, all 1485+ records would be here.
         
         // --- I18N (Language) ---
         const translations = {
@@ -4295,96 +4299,132 @@
                 title: "Estándares de Competencia",
                 search_label: "Buscar por Código, Título, Comité o Sector",
                 search_placeholder: "Ej: EC0305, soldadura, construcción...",
-                level_label: "Filtrar por Nivel",
-                all_levels: "Todos los niveles",
+                level_label: "Nivel",
+                all_option: "Todos",
                 level_prefix: "Nivel",
-                results_count: (count) => `Mostrando ${count} de ${standardsData.length} estándares.`,
+                committee_label: "Comité",
+                sector_label: "Sector Productivo",
+                view_mode_label: "Modo de Vista",
+                filters_button: "Filtros",
+                clear_filters: "Limpiar Filtros",
+                sort_code_asc: "Código (A-Z)",
+                sort_code_desc: "Código (Z-A)",
+                sort_level_asc: "Nivel (Bajo-Alto)",
+                sort_level_desc: "Nivel (Alto-Bajo)",
+                random_button: "Aleatorio",
+                results_count: (count, total) => `Mostrando ${count} de ${total} estándares.`,
+                page_info: (page, totalPages) => `Página ${page} de ${totalPages}`,
                 no_results_title: "No se encontraron resultados",
                 no_results_text: "Intenta ajustar tus filtros o términos de búsqueda.",
+                show_all: "Mostrar Todos",
                 footer_text: "Sitio web creado para la visualización de Estándares de Competencia. Todos los datos pertenecen a RENEC."
             },
             en: {
                 title: "Competency Standards",
                 search_label: "Search by Code, Title, Committee, or Sector",
                 search_placeholder: "E.g., EC0305, welding, construction...",
-                level_label: "Filter by Level",
-                all_levels: "All levels",
+                level_label: "Level",
+                all_option: "All",
                 level_prefix: "Level",
-                results_count: (count) => `Showing ${count} of ${standardsData.length} standards.`,
+                committee_label: "Committee",
+                sector_label: "Productive Sector",
+                view_mode_label: "View Mode",
+                filters_button: "Filters",
+                clear_filters: "Clear Filters",
+                sort_code_asc: "Code (A-Z)",
+                sort_code_desc: "Code (Z-A)",
+                sort_level_asc: "Level (Low-High)",
+                sort_level_desc: "Level (High-Low)",
+                random_button: "Random",
+                results_count: (count, total) => `Showing ${count} of ${total} standards.`,
+                page_info: (page, totalPages) => `Page ${page} of ${totalPages}`,
                 no_results_title: "No Results Found",
                 no_results_text: "Try adjusting your filters or search terms.",
+                show_all: "Show All",
                 footer_text: "Website created for visualizing Competency Standards. All data belongs to RENEC."
             }
         };
 
-        // --- DOM Elements ---
-        const grid = document.getElementById('standards-grid');
-        const searchInput = document.getElementById('search-input');
-        const levelFilter = document.getElementById('level-filter');
-        const resultsCount = document.getElementById('results-count');
-        const noResults = document.getElementById('no-results');
-        const loader = document.getElementById('loader-container');
-        const langSwitcher = document.getElementById('lang-switcher');
-        const themeSwitcher = document.getElementById('theme-switcher');
-        
+        // --- State ---
         let currentLang = 'es';
         let currentTheme = 'auto';
+        let currentSort = 'code_asc';
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let filteredData = [...standardsData];
+
+        // --- DOM Elements ---
+        const getEl = (id) => document.getElementById(id);
+        const standardsContainer = getEl('standards-container');
+        const searchInput = getEl('search-input');
+        const levelFilter = getEl('level-filter');
+        const committeeFilter = getEl('committee-filter');
+        const sectorFilter = getEl('sector-filter');
+        const resultsCount = getEl('results-count');
+        const noResults = getEl('no-results');
+        const loader = getEl('loader-container');
+        const langSwitcher = getEl('lang-switcher');
+        const themeSwitcher = getEl('theme-switcher');
+        const filterToggle = getEl('filter-toggle');
+        const filterPanel = getEl('filter-panel');
+        const filterCount = getEl('filter-count');
+        const clearFiltersBtn = getEl('clear-filters');
+        const viewModeSwitcher = getEl('view-mode-switcher');
+        const sortSelect = getEl('sort-select');
+        const randomBtn = getEl('random-button');
+        const showAllBtn = getEl('show-all-button');
+        const paginationContainer = getEl('pagination');
 
         // --- Functions ---
 
-        /**
-         * Normalizes a string by converting to lowercase and removing accents.
-         * @param {string} str The string to normalize.
-         * @returns {string} The normalized string.
-         */
         const normalizeString = (str) => {
             if (typeof str !== 'string') return '';
             return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         };
+        
+        function renderStandards(standardsToRender) {
+            standardsContainer.innerHTML = '';
+            
+            const hasResults = standardsToRender.length > 0;
+            noResults.classList.toggle('hidden', hasResults);
+            standardsContainer.classList.toggle('hidden', !hasResults);
+            paginationContainer.classList.toggle('hidden', !hasResults);
 
-        /**
-         * Renders the standards cards on the page.
-         * @param {Array} standards The array of standard objects to render.
-         */
-        function renderStandards(standards) {
-            grid.innerHTML = '';
-            if (standards.length === 0) {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
+            if (!hasResults) {
+                updateResultsCount(0, filteredData.length);
+                return;
             }
 
             const fragment = document.createDocumentFragment();
-            standards.forEach(std => {
+            standardsToRender.forEach(std => {
                 const card = document.createElement('div');
-                card.className = 'neo-card flex flex-col justify-between p-4 rounded-lg h-full';
+                card.className = 'neo-card p-4 rounded-lg h-full';
                 card.innerHTML = `
-                    <div>
+                    <div class="list-content">
                         <div class="flex justify-between items-start mb-2">
                             <span class="font-mono font-bold text-lg text-[var(--accent-color)]">${std.Codigo}</span>
-                            <span class="font-bold border-2 border-[var(--border-color)] px-2 py-1 rounded-md text-sm">${translations[currentLang].level_prefix} ${std.Nivel}</span>
+                             <span class="font-bold border-2 border-[var(--border-color)] px-2 py-1 rounded-md text-sm whitespace-nowrap">${translations[currentLang].level_prefix} ${std.Nivel}</span>
                         </div>
                         <h3 class="font-bold text-xl mb-2">${std.Titulo}</h3>
                     </div>
-                    <div>
+                    <div class="list-details">
                         <p class="text-sm font-mono mt-4 opacity-80">${std.Comite}</p>
                         <p class="text-xs font-bold mt-2 uppercase tracking-wider opacity-60">${std['Sector Productivo']}</p>
                     </div>
                 `;
                 fragment.appendChild(card);
             });
-            grid.appendChild(fragment);
-            updateResultsCount(standards.length);
+            standardsContainer.appendChild(fragment);
+            updateResultsCount(filteredData.length, standardsData.length);
         }
 
-        /**
-         * Filters the standards based on search and level filters.
-         */
-        function filterAndRender() {
+        function applyAllFiltersAndRender() {
             const searchTerm = normalizeString(searchInput.value);
             const selectedLevel = levelFilter.value;
-
-            const filtered = standardsData.filter(std => {
+            const selectedCommittee = committeeFilter.value;
+            const selectedSector = sectorFilter.value;
+            
+            filteredData = standardsData.filter(std => {
                 const matchesSearch = searchTerm === '' ||
                     normalizeString(std.Codigo).includes(searchTerm) ||
                     normalizeString(std.Titulo).includes(searchTerm) ||
@@ -4392,38 +4432,128 @@
                     normalizeString(std['Sector Productivo']).includes(searchTerm);
 
                 const matchesLevel = selectedLevel === 'all' || std.Nivel === selectedLevel;
+                const matchesCommittee = selectedCommittee === 'all' || std.Comite === selectedCommittee;
+                const matchesSector = selectedSector === 'all' || std['Sector Productivo'] === selectedSector;
 
-                return matchesSearch && matchesLevel;
+                return matchesSearch && matchesLevel && matchesCommittee && matchesSector;
             });
-
-            renderStandards(filtered);
+            
+            updateFilterCount();
+            applySort();
+            currentPage = 1;
+            paginateAndRender();
         }
         
-        /**
-         * Populates the level filter dropdown with unique levels from the data.
-         */
-        function populateLevelFilter() {
-            const levels = [...new Set(standardsData.map(std => std.Nivel))].sort((a,b) => a - b);
-            levels.forEach(level => {
+        function applySort() {
+            currentSort = sortSelect.value;
+            const [key, direction] = currentSort.split('_');
+
+            filteredData.sort((a, b) => {
+                let valA, valB;
+                if (key === 'level') {
+                    valA = parseInt(a.Nivel, 10);
+                    valB = parseInt(b.Nivel, 10);
+                } else { // code
+                    valA = a.Codigo;
+                    valB = b.Codigo;
+                }
+
+                if (valA < valB) return direction === 'asc' ? -1 : 1;
+                if (valA > valB) return direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+        
+        function paginateAndRender() {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedItems = filteredData.slice(start, end);
+            
+            renderStandards(paginatedItems);
+            renderPagination(totalPages);
+        }
+        
+        function renderPagination(totalPages) {
+            paginationContainer.innerHTML = '';
+            if (totalPages <= 1) return;
+
+            const createButton = (textKey, page, isDisabled = false) => {
+                const button = document.createElement('button');
+                button.className = 'neo-button px-4 py-2 rounded-lg';
+                button.dataset.page = page;
+                button.disabled = isDisabled;
+                const span = document.createElement('span');
+                span.dataset.langKey = textKey;
+                span.textContent = translations[currentLang][textKey] || textKey;
+                button.appendChild(span);
+                return button;
+            };
+            
+            paginationContainer.appendChild(createButton('prev_page', currentPage - 1, currentPage === 1));
+
+            const pageInfo = document.createElement('div');
+            pageInfo.id = 'page-info';
+            pageInfo.className = 'px-4 py-2 font-bold';
+            pageInfo.textContent = translations[currentLang].page_info(currentPage, totalPages);
+            paginationContainer.appendChild(pageInfo);
+            
+            paginationContainer.appendChild(createButton('next_page', currentPage + 1, currentPage === totalPages));
+        }
+
+        function populateSelect(selectElement, data, key, labelKey) {
+            const uniqueValues = [...new Set(data.map(item => item[key]))].sort((a, b) => {
+                // If values are numeric (like Level), sort numerically
+                if (!isNaN(a) && !isNaN(b)) {
+                    return a - b;
+                }
+                return a.localeCompare(b);
+            });
+
+            selectElement.innerHTML = `<option value="all" data-lang-key="all_option">${translations[currentLang].all_option}</option>`;
+            
+            uniqueValues.forEach(value => {
                 const option = document.createElement('option');
-                option.value = level;
-                option.textContent = `${translations[currentLang].level_prefix} ${level}`;
-                levelFilter.appendChild(option);
+                option.value = value;
+                option.textContent = labelKey === 'level_prefix' ? `${translations[currentLang][labelKey]} ${value}` : value;
+                selectElement.appendChild(option);
             });
         }
         
-        /**
-         * Updates the text indicating how many results are being shown.
-         * @param {number} count The number of currently visible standards.
-         */
-        function updateResultsCount(count) {
-            resultsCount.textContent = translations[currentLang].results_count(count);
+        function populateAllFilters() {
+            populateSelect(levelFilter, standardsData, 'Nivel', 'level_prefix');
+            populateSelect(committeeFilter, standardsData, 'Comite');
+            populateSelect(sectorFilter, standardsData, 'Sector Productivo');
         }
 
-        /**
-         * Sets the language for the UI.
-         * @param {string} lang The language code ('es' or 'en').
-         */
+        function updateResultsCount(count, total) {
+            resultsCount.textContent = translations[currentLang].results_count(count, total);
+        }
+        
+        function updateFilterCount() {
+            let count = 0;
+            if (levelFilter.value !== 'all') count++;
+            if (committeeFilter.value !== 'all') count++;
+            if (sectorFilter.value !== 'all') count++;
+
+            if (count > 0) {
+                filterCount.textContent = count;
+                filterCount.classList.remove('hidden');
+            } else {
+                filterCount.classList.add('hidden');
+            }
+        }
+        
+        function clearAllFilters() {
+            searchInput.value = '';
+            levelFilter.value = 'all';
+            committeeFilter.value = 'all';
+            sectorFilter.value = 'all';
+            applyAllFiltersAndRender();
+        }
+
         function setLanguage(lang) {
             if (!translations[lang]) return;
             currentLang = lang;
@@ -4431,40 +4561,21 @@
 
             document.querySelectorAll('[data-lang-key]').forEach(el => {
                 const key = el.dataset.langKey;
-                if (translations[lang][key]) {
-                    if (typeof translations[lang][key] === 'function') {
-                        // This handles dynamic text like the results count
-                        // We'll call the function again when the count actually changes
-                    } else {
-                        el.textContent = translations[lang][key];
-                    }
+                const translation = translations[lang][key];
+                if (translation && typeof translation !== 'function') {
+                    el.textContent = translation;
                 }
             });
             
             searchInput.placeholder = translations[lang].search_placeholder;
+            populateAllFilters(); // Repopulate to apply language to options
+            applyAllFiltersAndRender(); // Re-render to apply all language changes
             
-            // Update level filter options
-            levelFilter.querySelectorAll('option').forEach(opt => {
-                if(opt.value === 'all') {
-                    opt.textContent = translations[lang].all_levels;
-                } else {
-                    opt.textContent = `${translations[lang].level_prefix} ${opt.value}`;
-                }
-            });
-
-            // Re-render to apply language changes to dynamic content
-            filterAndRender();
-            
-            // Update active button
             langSwitcher.querySelectorAll('button').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
         }
 
-        /**
-         * Sets the color theme.
-         * @param {string} theme The theme name ('light', 'dark', or 'auto').
-         */
         function setTheme(theme) {
             currentTheme = theme;
             localStorage.setItem('theme', theme);
@@ -4479,49 +4590,78 @@
                 root.classList.toggle('light', theme === 'light');
             }
 
-            // Update active button
             themeSwitcher.querySelectorAll('button').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.theme === theme);
             });
         }
 
         // --- Event Listeners ---
-        searchInput.addEventListener('input', filterAndRender);
-        levelFilter.addEventListener('change', filterAndRender);
+        searchInput.addEventListener('input', () => {
+            // Debounce search input
+            setTimeout(applyAllFiltersAndRender, 300);
+        });
+        
+        [levelFilter, committeeFilter, sectorFilter, sortSelect].forEach(el => {
+            el.addEventListener('change', applyAllFiltersAndRender);
+        });
         
         langSwitcher.addEventListener('click', (e) => {
             const button = e.target.closest('button');
-            if (button && button.dataset.lang) {
-                setLanguage(button.dataset.lang);
-            }
+            if (button?.dataset.lang) setLanguage(button.dataset.lang);
         });
         
         themeSwitcher.addEventListener('click', (e) => {
             const button = e.target.closest('button');
-            if (button && button.dataset.theme) {
-                setTheme(button.dataset.theme);
+            if (button?.dataset.theme) setTheme(button.dataset.theme);
+        });
+
+        filterToggle.addEventListener('click', () => {
+            filterPanel.classList.toggle('hidden');
+        });
+
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+        showAllBtn.addEventListener('click', clearAllFilters);
+
+        viewModeSwitcher.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (button?.dataset.view) {
+                const view = button.dataset.view;
+                standardsContainer.className = view === 'grid' ? 'view-grid' : 'view-list';
+                viewModeSwitcher.querySelectorAll('button').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.view === view);
+                });
             }
         });
 
-        // Listen for OS theme changes for 'auto' mode
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (currentTheme === 'auto') {
-                setTheme('auto');
+        randomBtn.addEventListener('click', () => {
+            filteredData.sort(() => Math.random() - 0.5);
+            currentPage = 1;
+            paginateAndRender();
+        });
+        
+        paginationContainer.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (button?.dataset.page) {
+                currentPage = parseInt(button.dataset.page, 10);
+                paginateAndRender();
             }
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (currentTheme === 'auto') setTheme('auto');
         });
 
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Simulate loading
             setTimeout(() => {
                 loader.classList.add('hidden');
-                grid.classList.remove('hidden');
-
-                populateLevelFilter();
+                
+                populateAllFilters();
                 const savedTheme = localStorage.getItem('theme') || 'auto';
                 setTheme(savedTheme);
-                setLanguage('es'); // Initial language
-            }, 500); // Small delay to show loader
+                setLanguage('es'); // This also triggers the first render
+
+            }, 500); // Simulate loading
         });
 
     </script>
