@@ -407,13 +407,13 @@
                 card.innerHTML = `
                     <div class="list-content flex-grow">
                         <div class="flex justify-between items-start mb-2 gap-2">
-                            <span class="font-mono font-bold text-lg text-[var(--accent-color)]">${std.Codigo}</span>
+                            <span class="font-mono font-bold text-lg text-[var(--accent-color)]">${std.Código}</span>
                             <span class="font-bold border-2 border-[var(--border-color)] px-2 py-1 rounded-md text-sm whitespace-nowrap">${translations[currentLang].level_prefix} ${std.Nivel}</span>
                         </div>
-                        <h3 class="font-bold text-xl mb-2">${std.Titulo}</h3>
+                        <h3 class="font-bold text-xl mb-2">${std.Título}</h3>
                     </div>
                     <div class="list-details mt-auto pt-4"> <!-- mt-auto pushes to bottom -->
-                        <p class="text-sm font-mono opacity-80">${std.Comite}</p>
+                        <p class="text-sm font-mono opacity-80">${std.Comité}</p>
                         <p class="text-xs font-bold mt-2 uppercase tracking-wider opacity-60">${std['Sector Productivo']}</p>
                     </div>
                 `;
@@ -431,13 +431,13 @@
             
             filteredData = standardsData.filter(std => {
                 const matchesSearch = searchTerm === '' ||
-                    normalizeString(std.Codigo).includes(searchTerm) ||
-                    normalizeString(std.Titulo).includes(searchTerm) ||
-                    normalizeString(std.Comite).includes(searchTerm) ||
+                    normalizeString(std.Código).includes(searchTerm) ||
+                    normalizeString(std.Título).includes(searchTerm) ||
+                    normalizeString(std.Comité).includes(searchTerm) ||
                     normalizeString(std['Sector Productivo']).includes(searchTerm);
 
-                const matchesLevel = selectedLevel === 'all' || std.Nivel === selectedLevel;
-                const matchesCommittee = selectedCommittee === 'all' || std.Comite === selectedCommittee;
+                const matchesLevel = selectedLevel === 'all' || String(std.Nivel) === selectedLevel;
+                const matchesCommittee = selectedCommittee === 'all' || std.Comité === selectedCommittee;
                 const matchesSector = selectedSector === 'all' || std['Sector Productivo'] === selectedSector;
 
                 return matchesSearch && matchesLevel && matchesCommittee && matchesSector;
@@ -459,8 +459,8 @@
                     valA = parseInt(a.Nivel, 10);
                     valB = parseInt(b.Nivel, 10);
                 } else { // code
-                    valA = a.Codigo;
-                    valB = b.Codigo;
+                    valA = a.Código;
+                    valB = b.Código;
                 }
 
                 if (valA < valB) return direction === 'asc' ? -1 : 1;
@@ -511,7 +511,7 @@
 
         function populateSelect(selectElement, data, key, labelKey) {
             const uniqueValues = [...new Set(data.map(item => item[key]))].sort((a, b) => {
-                if (!isNaN(a) && !isNaN(b)) {
+                if (key === 'Nivel' && !isNaN(a) && !isNaN(b)) {
                     return a - b;
                 }
                 return String(a).localeCompare(String(b));
@@ -529,7 +529,7 @@
         
         function populateAllFilters() {
             populateSelect(levelFilter, standardsData, 'Nivel', 'level_prefix');
-            populateSelect(committeeFilter, standardsData, 'Comite');
+            populateSelect(committeeFilter, standardsData, 'Comité');
             populateSelect(sectorFilter, standardsData, 'Sector Productivo');
         }
 
